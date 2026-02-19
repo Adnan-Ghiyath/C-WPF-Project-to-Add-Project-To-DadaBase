@@ -1,0 +1,219 @@
+﻿<Window x:Class="Add_Projects_IAdnan.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="إضافة مشروع جديد"
+        Height="800"
+        Width="480"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <!-- أنماط محسّنة -->
+        <Style x:Key="ModernTextBox" TargetType="TextBox">
+            <Setter Property="Background" Value="#0f1729"/>
+            <Setter Property="Foreground" Value="#e4e4e4"/>
+            <Setter Property="BorderBrush" Value="#2d2d44"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+        </Style>
+
+        <Style x:Key="ModernLabel" TargetType="Label">
+            <Setter Property="Foreground" Value="#a0a0a0"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Margin" Value="0,10,0,4"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#1a1a2e" Offset="0"/>
+                <GradientStop Color="#16213e" Offset="0.5"/>
+                <GradientStop Color="#1a1a2e" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" 
+                Height="70" 
+                Background="#16213e"
+                BorderBrush="#2d2d44"
+                BorderThickness="0,0,0,1">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="✨ إضافة مشروع جديد"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Foreground="#7c5cfc"
+                           HorizontalAlignment="Center"
+                           FlowDirection="RightToLeft"/>
+                <TextBlock Text="أضف مشروعك إلى معرض الأعمال"
+                           FontSize="11"
+                           Foreground="#808080"
+                           HorizontalAlignment="Center"
+                           Margin="0,4,0,0"
+                           FlowDirection="RightToLeft"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Content -->
+        <ScrollViewer Grid.Row="1" 
+                      VerticalScrollBarVisibility="Auto"
+                      Margin="0,10,0,0">
+            <StackPanel Margin="20">
+
+                <!-- Image Area -->
+                <Border Height="220" 
+                        BorderBrush="#2d2d44" 
+                        BorderThickness="2" 
+                        CornerRadius="10" 
+                        Background="#0f1729"
+                        Cursor="Hand"
+                        MouseLeftButtonDown="ImageBorder_MouseLeftButtonDown"
+                        Margin="0,0,0,15">
+                    <Grid>
+                        <Image x:Name="imgProject" 
+                               Stretch="Uniform" 
+                               Margin="10"/>
+
+                        <StackPanel x:Name="txtPlaceholder"
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center">
+                            <TextBlock Text="📷" 
+                                       FontSize="40"
+                                       HorizontalAlignment="Center"
+                                       Foreground="#7c5cfc"/>
+                            <TextBlock Text="انقر لإضافة صورة المشروع"
+                                       FontSize="13"
+                                       Foreground="#808080"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,8,0,0"
+                                       FlowDirection="RightToLeft"/>
+                        </StackPanel>
+
+                        <Border Background="#16213e"
+                                CornerRadius="5"
+                                Padding="8,5"
+                                HorizontalAlignment="Right" 
+                                VerticalAlignment="Top" 
+                                Margin="12">
+                            <CheckBox Content="⭐ مميز" 
+                                     Foreground="#e4e4e4"
+                                      x:Name="chkFeatured"
+                                     FontSize="11"
+                                     FlowDirection="RightToLeft"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Info Card -->
+                <Border BorderBrush="#2d2d44" 
+                        BorderThickness="1" 
+                        CornerRadius="10" 
+                        Background="#16213e"
+                        Padding="20">
+                    <StackPanel>
+
+                        <TextBlock Text="📝 معلومات المشروع" 
+                                   FontSize="15" 
+                                   FontWeight="Bold" 
+                                   Foreground="#e4e4e4"
+                                   Margin="0,0,0,15"
+                                   FlowDirection="RightToLeft"/>
+
+                        <Label Content="اسم المشروع" 
+                               Style="{StaticResource ModernLabel}"
+                               FlowDirection="RightToLeft"/>
+                        <TextBox x:Name="txtName" 
+                                 Height="38" 
+                                 Style="{StaticResource ModernTextBox}"/>
+
+                        <Label Content="الوصف / العنوان" 
+                               Style="{StaticResource ModernLabel}"
+                               FlowDirection="RightToLeft"/>
+                        <TextBox x:Name="txtTitle1" 
+                                 Height="65" 
+                                 TextWrapping="Wrap" 
+                                 AcceptsReturn="True"
+                                 VerticalScrollBarVisibility="Auto"
+                                 Style="{StaticResource ModernTextBox}"/>
+
+                        <Label Content="التصنيفات / الوسوم" 
+                               Style="{StaticResource ModernLabel}"
+                               FlowDirection="RightToLeft"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" 
+                                     x:Name="txtSubTitle1" 
+                                     Height="38" 
+                                     Style="{StaticResource ModernTextBox}"/>
+                            <TextBox Grid.Column="2" 
+                                     x:Name="txtSubTitle2" 
+                                     Height="38" 
+                                     Style="{StaticResource ModernTextBox}"/>
+                            <TextBox Grid.Column="4" 
+                                     x:Name="txtSubTitle3" 
+                                     Height="38" 
+                                     Style="{StaticResource ModernTextBox}"/>
+                            <TextBox Grid.Column="6" 
+                                     x:Name="txtSubTitle4" 
+                                     Height="38" 
+                                     Style="{StaticResource ModernTextBox}"/>
+                        </Grid>
+
+                        <Label Content="🌐 رابط المعاينة المباشر" 
+                               Style="{StaticResource ModernLabel}"
+                               FlowDirection="RightToLeft"/>
+                        <TextBox x:Name="txtWebPreview" 
+                                 Height="38" 
+                                 MouseDoubleClick="SelectHtmlFile_Click"
+                                 Style="{StaticResource ModernTextBox}"/>
+
+                        <Label Content="💻 رابط GitHub" 
+                               Style="{StaticResource ModernLabel}"
+                               FlowDirection="RightToLeft"/>
+                        <TextBox x:Name="txtGitPreview" 
+                                 Height="38" 
+                                 Style="{StaticResource ModernTextBox}"/>
+
+                        <Button Click="Button_Click" 
+                                x:Name="MainBTN"
+                                    Content="💾 حفظ المشروع" 
+                                Height="45" 
+                                Margin="0,20,0,0" 
+                                Background="#7c5cfc"
+                                Foreground="White"
+                                FontSize="14"
+                                FontWeight="Bold"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                FlowDirection="RightToLeft">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="8"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+                </Border>
+
+                <Border Height="20"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
